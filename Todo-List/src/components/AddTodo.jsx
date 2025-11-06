@@ -14,14 +14,15 @@ function AddTodo() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="add-todo">
+    <form onSubmit={handleSubmit} className="input-group mb-3">
       <input
         type="text"
         placeholder="Nova tarefa..."
         value={texto}
         onChange={(e) => setTexto(e.target.value)}
+        className='form-control'
       />
-      <button type="submit">Adicionar</button>
+      <button type="submit" className="btn btn-primary">Adicionar</button>
     </form>
   );
 };

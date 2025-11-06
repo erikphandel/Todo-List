@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useMemo } from "react";
+import { createContext, useState, useEffect, useMemo, useCallback } from "react";
 
 export const TodoContext = createContext();
 
@@ -11,36 +11,46 @@ export function TodoProvider ({ children }) {
   const [filtro, setFiltro] = useState('todas');
 
   useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos));
+    try {
+      localStorage.setItem('todos', JSON.stringify(todos));
+    } catch (error) {
+      console.error('Erro ao salvar todos no localStorage:', error);
+    }
   }, [todos]);
 
-  const adicionarTarefa = (texto) => {
+  const adicionarTarefa = useCallback((texto) => {
     const novaTarefa = {
       id: crypto.randomUUID(),
       texto,
       completa: false,
     };
-    setTodos([...todos, novaTarefa]);
-  };
+    setTodos((prev) => {
+      const newTodos = [...prev, novaTarefa];
+      return newTodos;
+    });
+  }, []);
 
-  const toggleCompleta = (id) => {
+  const toggleCompleta = useCallback((id) => {
     setTodos(
       todos.map((todo) =>
         todo.id === id ? {...todo, completa: !todo.completa } : todo
       )
     );
-  };
+  }, []);
 
-  const deletarTarefa = (id) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  };
+  const deletarTarefa = useCallback((id) => {
+    setTodos((prev) => {
+      const newTodos = prev.filter((todo) => todo.id !== id);
+      return newTodos
+    });
+  }, []);
 
   const todosFiltradas = useMemo(() =>  
     todos.filter((todo) => {
       if (filtro === 'pendentes') return !todo.completa;
       if (filtro === 'concluidas') return todo.completa;
       return true;
-  }));
+  }), [todos, filtro]);
 
   const value = useMemo(() => ({
     todos,

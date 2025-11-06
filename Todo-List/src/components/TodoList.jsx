@@ -7,22 +7,24 @@ function TodoList() {
   const { todosFiltradas } = useTodo();
 
   return (
-    <div className="todo-list">
-      <AddTodo />
-      <FilterButtons />
-      <ul>
-        {todosFiltradas.map((todo) => (
-          <TodoItem
-            key={todo.id}
-            todo={todo}
-          />
-        ))}
-      </ul>
-      {todosFiltradas.length === 0 && (
-        <p>
-          Nenhuma tarefa a exibir.
-        </p>
-      )}
+    <div className="card shadow-sm">
+      <div className="card-body">
+        <AddTodo />
+        <FilterButtons />
+        <ul className='list-group list-group-flush'>
+          {todosFiltradas.map((todo) => (
+            <TodoItem
+              key={todo.id}
+              todo={todo}
+            />
+          ))}
+        </ul>
+        {todosFiltradas.length === 0 && (
+          <p className='text-muted text-center mt-3'>
+            Nenhuma tarefa a exibir.
+          </p>
+        )}
+      </div>
     </div>
   )
 }
