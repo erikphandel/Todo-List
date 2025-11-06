@@ -1,16 +1,11 @@
-# React + Vite
+Exercício para prática de uso de React hooks para curso de front-end da EBAC.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Essa aplicação permite a criação de uma lista de tarefas que será armazenada em localstorage, e que pode ser atualizada. Tarefas podem ser marcadas como concluídas e excluídas, e a lista de tarefas pode ser filtrada em categorias.
 
-Currently, two official plugins are available:
+Para instalar, basta clonar o repositório, instalar as dependências com 'npm install' e depois rodar a aplicação com 'npm run dev'
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Recursos utilizados:
+- HTML, Javascript
+- Vite
+- React
+- ESLint
