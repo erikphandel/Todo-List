@@ -9,3 +9,4 @@ Recursos utilizados:
 - Vite
 - React
 - ESLint
+- Bootstrap
