@@ -31,8 +31,8 @@ export function TodoProvider ({ children }) {
   }, []);
 
   const toggleCompleta = useCallback((id) => {
-    setTodos(
-      todos.map((todo) =>
+    setTodos((prev) =>
+      prev.map((todo) =>
         todo.id === id ? {...todo, completa: !todo.completa } : todo
       )
     );
