@@ -1,14 +1,22 @@
 import { useState } from "react";
-import { useTodo } from "../context/useTodo";
+import { useSetRecoilState } from "recoil";
+import { todoListState } from "../atoms/todoAtoms";
 
 function AddTodo() {
   const [texto, setTexto] = useState('');
-  const { adicionarTarefa } = useTodo();
+  const setTodos = useSetRecoilState(todoListState);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (texto.trim()) {
-      adicionarTarefa(texto);
+      setTodos((prev) => [
+        ...prev,
+        {
+          id: crypto.randomUUID(),
+          texto: texto.trim(),
+          completa: false,
+        },
+      ]);
       setTexto('');
     }
   };
@@ -25,6 +33,6 @@ function AddTodo() {
       <button type="submit" className="btn btn-primary">Adicionar</button>
     </form>
   );
-};
+}
 
-export default AddTodo
+export default AddTodo;

@@ -1,7 +1,8 @@
-import { useTodo } from "../context/useTodo";
+import { useRecoilState } from 'recoil';
+import { filtroState } from '../atoms/todoAtoms';
 
 function FilterButtons() {
-  const { filtro, setFiltro } = useTodo();
+  const [filtro, setFiltro] = useRecoilState(filtroState);
 
   return (
     <div className="btn-group mb-3" role="group">
@@ -11,7 +12,7 @@ function FilterButtons() {
           onClick={() => setFiltro(tipo)}
           className={`btn ${filtro === tipo ? 'btn-primary' : 'btn-outline-primary'}`}
         >
-          {tipo === 'todas' ? 'Todas' : tipo === 'pendentes' ?  'Pendentes' : 'Concluídas'}
+          {tipo === 'todas' ? 'Todas' : tipo === 'pendentes' ? 'Pendentes' : 'Concluídas'}
         </button>
       ))}
     </div>

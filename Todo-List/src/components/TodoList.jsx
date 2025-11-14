@@ -1,10 +1,11 @@
-import { useTodo } from "../context/useTodo";
 import AddTodo from './AddTodo';
 import TodoItem from './TodoItem';
 import FilterButtons from './FilterButtons';
+import { useRecoilValue } from 'recoil';
+import { todosFiltradasState } from '../assets/todoSelectors';
 
 function TodoList() {
-  const { todosFiltradas } = useTodo();
+  const todosFiltradas = useRecoilValue(todosFiltradasState);
 
   return (
     <div className="card shadow-sm">
@@ -13,10 +14,7 @@ function TodoList() {
         <FilterButtons />
         <ul className='list-group list-group-flush'>
           {todosFiltradas.map((todo) => (
-            <TodoItem
-              key={todo.id}
-              todo={todo}
-            />
+            <TodoItem key={todo.id} todo={todo} />
           ))}
         </ul>
         {todosFiltradas.length === 0 && (
@@ -26,7 +24,7 @@ function TodoList() {
         )}
       </div>
     </div>
-  )
+  );
 }
 
 export default TodoList;
