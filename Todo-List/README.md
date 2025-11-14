@@ -10,3 +10,4 @@ Recursos utilizados:
 - React
 - ESLint
 - Bootstrap
+- Recoil
